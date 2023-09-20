@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/editarPrograma.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}" />
+
+    
+    <title>ACTUALIZAR PROGRAMA .:. SIGCE</title>
+</head>
+<body>
+    <div th:replace="fragmentos/header2"></div>
+    <div>
+<div class="containerEditar">
+    
+<form th:action="@{/Programa/{id}(id=${programa.id_Pro})}" class="form" th:object="${programa}" method="POST" onsubmit="return comprobarActualizar()">
+    <h1 class="titule">Actualizar Programa</h1>
+    <div class="flex">
+    <label>
+    <input type="text" class="input" name="id_Pro"  placeholder="" th:field="*{id_Pro}" readonly>
+    <span>Id programa</span>    
+        </label>
+        </div>
+
+<div class="flex">
+    <label>
+  
+    <input type="text" class="input" placeholder="" name="nombre_Pro" th:field="*{nombre_Pro}">
+    <span>Nombre Programa</span>
+    </label>
+</div>
+<input name="estado.id_Est" type="hidden" th:field="*{estado.id_Est}">
+    <button class="submit" type="submit">Actualizar</button>
+        
+</form>
+</div>  
+</div>
+<script th:src="@{/js/programa.js}"></script>
+</body>
+</html>

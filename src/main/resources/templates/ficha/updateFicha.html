@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/editarFicha.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}" />
+    <title>ACTUALIZAR FICHA .:. SIGCE</title>
+</head>
+<body>
+    <div th:replace="fragmentos/header2"></div>  
+
+<div class="containerFicha">
+<form class="form" th:action="@{/Ficha/{id}(id=${ficha.id_Fic})}" th:each="f:${ficha}" method="POST" onsubmit="return comprobarActualizar()">
+    <h1 class="tituleFich">Actualizar Ficha</h1>
+
+    <div class="flex">
+        <label>
+          <input type="text" class="input" name="id_Fic" th:value="${f.id_Fic}"  required readonly>
+          <span>Número de ficha</span>
+        </label>
+
+        <label>
+        <select name="jornada_Fic" class="jor">
+            <option th:value="${f.jornada_Fic}" th:text="${f.jornada_Fic}"></option>
+            <option value="Diurna">Diurna</option>
+            <option value="Nocturna">Nocturna</option>
+            <option value="Mixta">Mixta</option>
+        </select>
+    </label>
+    </div>
+
+    <label>
+        <input type="date" class="date" name="fechaComienzo_Fic" th:value="${f.fechaComienzo_Fic}" required>
+        <span>Fecha Comienzo</span>
+    </label>
+    <label>
+        <input type="date" class="date"  name="fechaFin_Fic" th:value="${f.fechaFin_Fic}"  required>
+        <span>Fecha fin</span>
+    </label>
+   
+        <select name="programa.id_Pro" class="doc" >
+            <option class="option" th:value="${f.programa.id_Pro}" th:text="${f.programa.nombre_Pro}"></option>
+            <option  th:each="programa: ${listPrograma}" th:value="${programa.id_Pro}" th:text="${programa.nombre_Pro}"></option>
+        </select>
+   
+
+    <input  name="estado.id_Est"  type="hidden" th:value="${f.estado.id_Est}">
+    <button  class="submit" type="submit">Actualizar</button>
+    </form>
+</div>
+    <script th:src="@{/js/ficha.js}"></script>
+</body>
+</html>

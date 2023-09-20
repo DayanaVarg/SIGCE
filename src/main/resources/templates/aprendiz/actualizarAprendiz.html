@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/editarAprendiz.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}" />
+
+    
+    <title>ACTUALIZAR APRENDIZ .:. SIGCE</title>
+</head>
+<body>
+    <div th:replace="fragmentos/header2"></div> 
+
+    <div class="containerAprendiz">
+
+        <form class="form" th:action="@{/Aprendiz/actualizar}" method="post" th:each="a:${aprendiz}"  onsubmit="return comprobarActualizar()">
+            <h1 class="titule">Actualizar Aprendiz</h1>
+
+            <div class="flex">
+                <label>
+                   <input type="text" class="input" th:value="${a.tipoIde_Apr}" >
+                   <span>Tipo de documento</span>
+            </label>
+
+                <label>
+                   <input type="text" class="input" name="identificacion_Apr" th:value="${a.identificacion_Apr}" >
+                   <span>Número de documento</span>
+                </label>
+            </div>
+
+            <div class="flex">
+            <label>
+                <input type="text" class="input" th:value="${a.nombre_Apr}" >
+                <span>Nombre</span>
+            </label>
+
+            <label>
+                <input type="text" class="input" th:value="${a.apellido_Apr}" >
+                <span>Apellido</span>
+            </label>
+            </div>
+           
+            <label>
+                <input type="email" class="input" name="correo_Apr" th:value="${a.correo_Apr}">
+                <span>Correo Electrónico</span>
+            </label>
+
+            <div class="flex">
+            
+                <label>
+                <input type="text" class="input" th:value="${a.Ficha.id_Fic}" >
+                    <span>Ficha</span>
+                </label>
+                <label>
+                <input type="text" class="input" th:value="${a.Ficha.Programa.nombre_Pro}" >
+            <span>Programa</span>
+            </label>
+            </div>
+
+            <button class="submit" type="submit">Actualizar</button>
+        </form>
+    </div>
+<script th:src="@{/js/aprendiz.js}"></script>
+</body>
+</html>

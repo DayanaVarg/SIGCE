@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/editarInstructor.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}" />
+
+    
+    <title>ACTUALIZAR INSTRUCTOR .:. SIGCE</title>
+</head>
+<body>
+    <div th:replace="fragmentos/header2"></div>  
+    
+    <div class="containerInstructor">
+        <form class="form" th:action="@{/Instructor/actualizar}" method="post" th:each="i:${instructor}"  onsubmit="return comprobarActualizar()">
+            <h1 class="titule">Actualizar Instructor</h1>
+
+            <div class="flex">
+                <label>
+                <input type="text" class="input" th:value="${i.tipoIde_Ins}" >
+                <span>Tipo de documento</span>
+            </label>
+
+                <label>
+                <input type="text" class="input" name="identificacion_Ins"  th:value="${i.identificacion_Ins}">
+                <span>Número de documento</span>
+                </label>
+            </div>
+
+            <div class="flex">
+            <label>
+                <input type="text" class="input"  th:value="${i.nombre_Ins}" >
+                <span>Nombre</span>
+            </label>
+
+            <label>
+                <input type="text" class="input" th:value="${i.apellido_Ins}" >
+                <span>Apellido</span>
+            </label>
+            </div>
+        
+            <label>
+                <input type="email" class="input" name="correo_Ins" th:value="${i.correo_Ins}">
+                <span>Correo Electrónico</span>
+            </label>
+
+
+            <button class="submit" type="submit">Actualizar</button>
+        </form>
+    </div>
+
+    <script th:src="@{/js/instructor.js}"></script>
+</body>
+</html>

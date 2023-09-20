@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/citacion.css}">
+        <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css}" />
+       
+    
+        <title>Registrar Citación .:. SIGCE</title>
+    </head>
+<body>
+    <div th:replace="fragmentos/headerInstructor"></div>  
+
+    <div class="ContainerCitacion">
+        <form class="form" th:action="@{/Citacion/add}" method="POST">
+           
+            <p class="title">Registrar Citación</p>
+          
+            <label>
+                <input type="file" name="docu_Cit" class="adjuntardoc"  placeholder="" required="">
+                <span>Documentación</span>
+            </label>
+
+            <div class="flex">
+                <label>
+                <input class="input" name="aprendiz.identificacion_Apr" type="text" placeholder="" required="">
+                <span>Documento aprendiz</span>
+            </label>
+
+                <label>
+                <input class="input" type="text" placeholder="" required="">
+                <span>Nombre aprendiz</span>
+            </label>
+
+                <label>
+                <input class="input" type="text" placeholder="" required="">
+                <span>Apellido aprendiz</span>
+            </label>
+            </div>
+         
+            <label>
+                <input class="input" name="materia_Cit" type="text" placeholder="" required="">
+                <span>Materia</span>
+            </label>
+       
+        <div class="flex">
+        <select id="state " name="gravedad_Cit" class="holder ">
+            <option>Seleccione la gravedad</option>
+            <option class="option" value="Leve">Leve</option>
+            <option class="option" value="Grave">Grave</option>
+            <option class="option" value="Gravísima">Gravísima</option>
+          </select>
+
+          <select id="state" class="holder" name="articulo.id_Aart">
+            <option>Seleccione el articulo del manual</option>
+            <option class="option" th:each="a:${articulo}" th:value="${a.id_Aart}" th:text="${a.nombre_Art}"></option>
+          </select>
+          <input name="estado.id_Est" type="hidden" th:value="1">
+        </div>
+       <div class="ultim">
+        <label>
+            <input class="campo" type="text" name="instructor.identificacion_Ins" placeholder="" required="">
+            <span>Documento instructor</span>
+        </label>
+        <label>
+            <input class="campo" name="motivo_Cit" type="textarea" placeholder="" required="">
+            <span>Motivo:</span>
+        </label>
+    </div>
+            <button class="submit">Registrar</button>
+
+        </form>
+    </div>
+   
+</html>
